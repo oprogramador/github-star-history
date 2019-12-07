@@ -13,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/oprogramador/github-stars.git"
   },
-  "keywords": ["github","stars","star","past","history"],
+  "keywords": [
+    "github",
+    "stars",
+    "star",
+    "past",
+    "history"
+  ],
   "author": "oprogramador",
   "license": "MIT",
   "bugs": {
@@ -21,8 +27,8 @@
   },
   "homepage": "https://github.com/oprogramador/github-stars#readme",
   "devDependencies": {
+    "@babel/core": "^7.7.5",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
@@ -35,7 +41,6 @@
     "eslint-import-resolver-babel-module": "^5.1.0",
     "mocha": "^6.2.2",
     "sinon": "^7.5.0",
-    "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^3.3.0"
   }
 }
