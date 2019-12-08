@@ -7,7 +7,7 @@
     "build": "rm -rf build && babel --copy-files src --out-dir build --ignore tests/",
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
-    "test": "mocha -r babel-register --recursive src/tests --timeout 5000"
+    "test": "mocha -r babel-register --recursive src/tests --timeout 50000"
   },
   "repository": {
     "type": "git",
@@ -42,5 +42,9 @@
     "mocha": "^6.2.2",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "superagent": "^5.1.2"
   }
 }
