@@ -1,5 +1,5 @@
 {
-  "name": "github-stars",
+  "name": "github-star-history",
   "version": "1.0.0",
   "description": "A script checking stars number at a given point in time for a given GitHub repo",
   "main": "build/index.js",
