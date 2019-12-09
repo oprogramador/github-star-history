@@ -11,6 +11,7 @@
 `npm i --save github-star-history` or `yarn add github-star-history`
 
 ## usage
+Export your GitHub token as `GITHUB_TOKEN` env.
 ```js
 import countStars from 'github-star-history';
 // or:
