@@ -19,3 +19,7 @@ import countStars from 'github-star-history';
 const result = await countStars('visionmedia/debug', '2019-01-01T00:00:00Z');
 expect(result).to.equal(7054);
 ```
+
+## notes
+- Due to GitHub API limits, if the past number of stars exceeds 39990, it returns 39990.
+- The returned past number of stars can change if a user unstars a given repo because GitHub API returns only the current stargazers.

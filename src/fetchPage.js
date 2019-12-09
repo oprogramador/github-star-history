@@ -11,7 +11,10 @@ function fetchPage(name, page) {
     .query({ page })
     .then(({ body }) => body.map(x => x.starred_at))
     .catch(async (error) => {
-      console.error(error);
+      console.error({ error, name, page });
+      if (error.response.status === 422) {
+        return [];
+      }
       await bluebird.delay(3000);
 
       return fetchPage(name, page);
