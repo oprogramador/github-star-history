@@ -1,10 +1,14 @@
-import countStars from 'github-stars/countStars';
+import countStars, { clearCache } from 'github-stars/countStars';
 import expect from 'github-stars/tests/expect';
 import sinon from 'sinon';
 
 describe('countStars', () => {
+  beforeEach(() => {
+    clearCache();
+  });
+
   it('counts stars if it equals 0', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -16,11 +20,11 @@ describe('countStars', () => {
     const result = await countStars('repo', '2018-01-01', fetchPage);
 
     expect(result).to.equal(0);
-    expect(fetchPage.callCount).to.be.lessThan(6);
+    expect(fetchPage.callCount).to.be.at.most(2);
   });
 
   it('counts stars for a single page', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -32,11 +36,11 @@ describe('countStars', () => {
     const result = await countStars('repo', '2019-01-01', fetchPage);
 
     expect(result).to.equal(2);
-    expect(fetchPage.callCount).to.be.lessThan(6);
+    expect(fetchPage.callCount).to.be.at.most(2);
   });
 
   it('counts stars for an entire page minus 1', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -55,11 +59,11 @@ describe('countStars', () => {
     const result = await countStars('repo', '2019-01-04', fetchPage);
 
     expect(result).to.equal(4);
-    expect(fetchPage.callCount).to.be.lessThan(6);
+    expect(fetchPage.callCount).to.be.at.most(3);
   });
 
   it('counts stars for an entire page plus 1', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -74,16 +78,15 @@ describe('countStars', () => {
       '2019-02-02T00:00:00Z',
       '2019-02-05T00:00:00Z',
     ]);
-    fetchPage.withArgs('repo', 3).resolves([]);
 
     const result = await countStars('repo', '2019-01-09', fetchPage);
 
     expect(result).to.equal(6);
-    expect(fetchPage.callCount).to.be.lessThan(7);
+    expect(fetchPage.callCount).to.be.at.most(4);
   });
 
   it('counts stars for an entire page', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -98,16 +101,15 @@ describe('countStars', () => {
       '2019-02-02T00:00:00Z',
       '2019-02-05T00:00:00Z',
     ]);
-    fetchPage.withArgs('repo', 3).resolves([]);
 
     const result = await countStars('repo', '2019-01-05', fetchPage);
 
     expect(result).to.equal(5);
-    expect(fetchPage.callCount).to.be.lessThan(7);
+    expect(fetchPage.callCount).to.be.at.most(4);
   });
 
   it('counts stars for two pages', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -122,16 +124,15 @@ describe('countStars', () => {
       '2019-02-02T00:00:00Z',
       '2019-02-05T00:00:00Z',
     ]);
-    fetchPage.withArgs('repo', 3).resolves([]);
 
     const result = await countStars('repo', '2019-02-01', fetchPage);
 
     expect(result).to.equal(8);
-    expect(fetchPage.callCount).to.be.lessThan(7);
+    expect(fetchPage.callCount).to.be.at.most(4);
   });
 
   it('counts stars for three pages', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -153,16 +154,15 @@ describe('countStars', () => {
       '2019-03-10T00:00:00Z',
       '2019-03-15T00:00:00Z',
     ]);
-    fetchPage.withArgs('repo', 4).resolves([]);
 
     const result = await countStars('repo', '2019-03-09', fetchPage);
 
     expect(result).to.equal(13);
-    expect(fetchPage.callCount).to.be.lessThan(7);
+    expect(fetchPage.callCount).to.be.at.most(4);
   });
 
   it('counts stars for two pages plus one page after date', async () => {
-    const fetchPage = sinon.stub();
+    const fetchPage = sinon.stub().resolves([]);
     fetchPage.withArgs('repo', 1).resolves([
       '2018-12-01T00:00:00Z',
       '2018-12-15T00:00:00Z',
@@ -184,12 +184,11 @@ describe('countStars', () => {
       '2019-03-10T00:00:00Z',
       '2019-03-15T00:00:00Z',
     ]);
-    fetchPage.withArgs('repo', 4).resolves([]);
 
     const result = await countStars('repo', '2019-02-01', fetchPage);
 
     expect(result).to.equal(8);
-    expect(fetchPage.callCount).to.be.lessThan(7);
+    expect(fetchPage.callCount).to.be.at.most(4);
   });
 
   it('counts stars for 10 pages', async () => {
@@ -238,7 +237,7 @@ describe('countStars', () => {
     const result = await countStars('repo', '2019-10-06', fetchPage);
 
     expect(result).to.equal(19);
-    expect(fetchPage.callCount).to.be.lessThan(11);
+    expect(fetchPage.callCount).to.be.at.most(8);
   });
 
   it('counts stars for 30 pages', async () => {
@@ -367,6 +366,6 @@ describe('countStars', () => {
     const result = await countStars('repo', '2019-10-06', fetchPage);
 
     expect(result).to.equal(59);
-    expect(fetchPage.callCount).to.be.lessThan(13);
+    expect(fetchPage.callCount).to.be.at.most(10);
   });
 });

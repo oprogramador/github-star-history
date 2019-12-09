@@ -1,6 +1,9 @@
 import countStars from 'github-stars';
 import expect from 'github-stars/tests/expect';
 
+// these tests are skipped because:
+// - their execution time is a bit long
+// - there's a limit for GitHub API requests per given period of time, even for authenticated users
 describe.skip('countStars - integration', () => {
   it('counts stars for visionmedia/debug, 2019-01-01', async () => {
     const result = await countStars('visionmedia/debug', '2019-01-01T00:00:00Z');
