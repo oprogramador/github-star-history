@@ -36,15 +36,15 @@
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "dirty-chai": "^2.0.1",
-    "eslint": "^6.8.0",
+    "eslint": "^7.19.0",
     "eslint-config-airbnb-improved": "^4.0.14",
     "eslint-import-resolver-babel-module": "^5.1.2",
-    "mocha": "^7.0.1",
-    "sinon": "^8.1.1",
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.4",
     "sinon-chai": "^3.4.0"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
-    "superagent": "^5.2.1"
+    "superagent": "^6.1.0"
   }
 }
