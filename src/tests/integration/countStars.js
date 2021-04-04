@@ -14,30 +14,30 @@ describe.skip('countStars - integration', () => {
   it('counts stars for visionmedia/debug, 2019-01-01', async () => {
     const result = await countStars('visionmedia/debug', '2019-01-01T00:00:00Z');
 
-    expect(result).to.equal(7053);
+    expect(result).to.equal(6959);
   });
 
   it('counts stars for visionmedia/debug, 2019-07-01', async () => {
     const result = await countStars('visionmedia/debug', '2019-07-01T00:00:00Z');
 
-    expect(result).to.equal(7703);
+    expect(result).to.equal(7591);
   });
 
   it('counts stars for bvaughn/progress-estimator, 2019-01-01', async () => {
     const result = await countStars('bvaughn/progress-estimator', '2019-01-01T00:00:00Z');
 
-    expect(result).to.equal(1555);
+    expect(result).to.equal(1539);
   });
 
   it('counts stars for mafintosh/hypercore, 2019-01-01', async () => {
     const result = await countStars('mafintosh/hypercore', '2019-01-01T00:00:00Z');
 
-    expect(result).to.equal(896);
+    expect(result).to.equal(886);
   });
 
   it('counts stars for baryon/tracer, 2019-01-01', async () => {
     const result = await countStars('baryon/tracer', '2019-01-01T00:00:00Z');
 
-    expect(result).to.equal(829);
+    expect(result).to.equal(823);
   });
 });
